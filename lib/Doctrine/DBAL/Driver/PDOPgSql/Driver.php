@@ -60,7 +60,7 @@ class Driver extends AbstractPostgreSQLDriver
             if (isset($params['charset'])) {
               $pdo->query('SET NAMES \''.$params['charset'].'\'');
             }
-
+            $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, true);
             return $pdo;
         } catch (PDOException $e) {
             throw DBALException::driverException($this, $e);
